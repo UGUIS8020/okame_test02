@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+<section id="signup">
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-lg-6 mx-auto">
+                <div class="card bg-primary text-center">
+                    <div class="card-body text-light">
+                        <h3>ユーザー登録</h3>
+                        <p>ユーザー情報を入力してください。</p>
+                        <form method="POST">
+                            {{ form.hidden_tag() }}
+                            
+                            <div class="mb-3">
+                                {{ render_field(form.display_name, placeholder="表示ネーム", class="form-control form-control-lg") }}
+                            </div>
+                            
+                            <div class="mb-3">
+                                {{ render_field(form.user_name, placeholder="名前", class="form-control form-control-lg") }}
+                            </div>
+                            
+                            <div class="mb-3">
+                                {{ render_field(form.furigana, placeholder="フリガナ", class="form-control form-control-lg") }}
+                            </div>
+                            <div class="mb-3">
+                                {{ render_field(form.gender, placeholder="性別", class="form-control form-control-lg") }}
+                            </div>
+                            
+                            <div class="mb-3">
+                                {{ render_field(form.date_of_birth, placeholder="生年月日", class="form-control form-control-lg") }}
+                            </div>
+                            
+                            <div class="mb-3">
+                                {{ render_field(form.phone, placeholder="電話番号", class="form-control form-control-lg") }}
+                            </div>
+
+                            <div class="mb-3">
+                                {{ render_field(form.post_code, placeholder="郵便番号", class="form-control form-control-lg") }}
+                            </div>
+
+                            <div class="mb-3">
+                                {{ render_field(form.address, placeholder="住所", class="form-control form-control-lg") }}
+                            </div>
+                            
+                            <div class="mb-3">
+                                {{ render_field(form.email, placeholder="メールアドレス", class="form-control form-control-lg") }}
+                            </div>
+                            
+                            <div class="mb-3">
+                                {{ render_field(form.email_confirm, placeholder="メールアドレス(確認)", class="form-control form-control-lg") }}
+                            </div>
+                            
+                            <div class="mb-3">
+                                {{ render_field(form.password, placeholder="パスワード", class="form-control form-control-lg") }}
+                            </div>
+                            
+                            <div class="mb-3">
+                                {{ render_field(form.pass_confirm, placeholder="パスワード(確認)", class="form-control form-control-lg") }}
+                            </div>                                                    
+                            
+                            {{ form.submit(class="btn btn-outline-light w-100") }}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

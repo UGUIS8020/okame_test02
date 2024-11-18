@@ -1,0 +1,31 @@
+<h1>新規登録</h1>
+<form method="POST" enctype="multipart/form-data">
+
+    <div>
+        <label for="title">タイトル</label>
+        <input type="text" name="title">
+    </div>
+    
+    <div>
+        <label for="body">内容</label>
+        <textarea name="body" id="body" rows="10" cols="50"></textarea> <!-- テキストエリアに変更 --> 
+    </div>
+
+    <div>
+        <label for="image">画像</label>  <!-- 画像アップロード用のフィールドを追加 -->
+        <input type="file" name="image" id="image">
+    </div>
+
+    <div>
+    <label for="category">カテゴリー</label>  <!-- カテゴリー選択用のラジオボタンを追加 -->
+    </div>
+
+    <div>
+        {% for category in categories %}
+            <input type="radio" id="category_{{ category.id }}" name="category_id" value="{{ category.id }}">
+            <label for="category_{{ category.id }}">{{ category.name }}</label><br>
+        {% endfor %}
+    </div>
+    
+    <input type="submit" value="新規登録">
+</form>

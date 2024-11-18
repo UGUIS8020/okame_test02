@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OKAME.</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+    {% from "_formhelpers.html" import render_field %}
+    {% for message in get_flashed_messages() %}
+    {{ message }}
+    {% endfor %}
+
+    <style>
+        body {
+              padding-top: 56px;            
+        }
+
+        .container02 {
+            background-color: #f99;
+            
+        }
+
+        .box0 {
+            background-color: #f99;            
+            
+        }
+
+        .box1 {
+            background-color: pink;
+            
+        }
+
+        .box2 {
+            background-color: lightblue; 
+                   
+        }
+
+        .box3 {
+            background-color: lightgreen; 
+                      
+        }
+
+        .box4 {
+            background-color: lightgrey; 
+                      
+        }
+
+        .box5 {
+            background-color: lightblue;
+            margin: 0;
+            padding: 0;
+                        
+        }
+        .box6 {
+            background-color: yellow;
+                               
+        }
+
+        .text-highlight {
+            font-weight: bold;
+            color: #ffae00; /* ゴールドで目立たせる */
+            font-size: 1.2rem; /* 少し大きく */            
+          }
+      
+        
+    </style>
+    
+
+
+</head>
+
+
+  <header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" data-bs-theme="dark">
+        <div class="container">
+          <a class="navbar-brand" href="{{ url_for('index') }}">OKAME.</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">                   
+              <li class="nav-item">
+                <a class="nav-link" href="#">新規POST</a>
+              </li>         
+            </ul>
+
+            
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">                         
+                
+                {% if current_user.is_administrator %}
+                    <p>Administrator: {{ current_user.is_administrator }}</p>
+                    <a class="nav-link" href="{{ url_for('user_maintenance') }}">登録者</a>
+                {% endif %}
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="#">ブログ</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="#">カテゴリ</a>
+                </li>                
+                <li class="nav-item">
+                <a class="nav-link" href="#">ユーザー</a>
+                </li>
+                {% if current_user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('logout') }}">ログアウト</a>
+                </li>    
+                <span class="navbar-text ms-3 text-highlight">
+                  {{ current_user.display_name }}
+              </span> 
+                {% endif %}         
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+      <!-- <div class="container" style="padding-top: 4rem; padding-bottom: 4rem;">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            flashメッセージ
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>    
+        </div>
+      </div> -->
+  </header>
+
+<body>
+  
+    {% block content %}
+    
+    {% endblock %}
+  
+</body>
+</html>

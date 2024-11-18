@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>認証ページ</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div id="auth-forms">
+        <button id="login-btn">ログイン</button>
+        <button id="signup-btn">サインアップ</button>
+
+        <!-- ログインフォーム -->
+        <form id="login-form" method="POST">
+            <input type="hidden" name="action" value="login">
+            <label for="login-user_name">ユーザー名</label>
+            <input type="text" name="user_name" id="login-user_name" required>
+            <label for="login-password">パスワード</label>
+            <input type="password" name="password" id="login-password" required>
+            <input type="submit" value="ログイン">
+        </form>
+
+        <!-- サインアップフォーム -->
+        <form id="signup-form" method="POST" style="display: none;">
+            <input type="hidden" name="action" value="signup">
+            <label for="signup-user_name">ユーザー名</label>
+            <input type="text" name="user_name" id="signup-user_name" required>
+            <label for="signup-password">パスワード</label>
+            <input type="password" name="password" id="signup-password" required>
+            <input type="submit" value="サインアップ">
+        </form>
+    </div>
+
+    <script>
+        // フォーム切り替えのためのJavaScript
+        document.getElementById("login-btn").onclick = function() {
+            document.getElementById("login-form").style.display = "block";
+            document.getElementById("signup-form").style.display = "none";
+        };
+        document.getElementById("signup-btn").onclick = function() {
+            document.getElementById("login-form").style.display = "none";
+            document.getElementById("signup-form").style.display = "block";
+        };
+    </script>
+
+{% endblock %}
